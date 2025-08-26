@@ -5,7 +5,7 @@ const SearchResults = ({ query }) => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null); 
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = "oRhG-kWxWLnQivqDWEn5RWv83oFLkFbp1cEGdFxrIaE";
 
   // Fetch data
   const getData = async () => {
