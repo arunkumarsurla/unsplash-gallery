@@ -1,31 +1,33 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const SearchResults = ({ query }) => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null); 
+  const [selectedImage, setSelectedImage] = useState(null);
   const apiKey = "oRhG-kWxWLnQivqDWEn5RWv83oFLkFbp1cEGdFxrIaE";
 
-  // Fetch data
+  // Fetch data using Axios
   const getData = async () => {
     setLoading(true);
     try {
       const url = query
-        ? `https://api.unsplash.com/search/photos?page=${page}&query=${query}&client_id=${apiKey}`
-        : `https://api.unsplash.com/photos?page=${page}&client_id=${apiKey}`;
+        ? `https://api.unsplash.com/search/photos`
+        : `https://api.unsplash.com/photos`;
 
-      const response = await fetch(url);
-      const jsonData = await response.json();
+      const response = await axios.get(url, {
+        params: {
+          client_id: apiKey,
+          page: page,
+          query: query || undefined,
+        },
+      });
 
-      if (query) {
-        if (jsonData.results && jsonData.results.length > 0) {
-          setData((prev) => [...prev, ...jsonData.results]);
-        }
-      } else {
-        if (Array.isArray(jsonData) && jsonData.length > 0) {
-          setData((prev) => [...prev, ...jsonData]);
-        }
+      const results = query ? response.data.results : response.data;
+
+      if (results && results.length > 0) {
+        setData((prev) => [...prev, ...results]);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -34,15 +36,18 @@ const SearchResults = ({ query }) => {
     }
   };
 
+  // Reset data when query changes
   useEffect(() => {
     setData([]);
     setPage(1);
   }, [query]);
 
+  // Fetch data on page or query change
   useEffect(() => {
     getData();
   }, [page, query]);
 
+  // Infinite scroll
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -105,7 +110,7 @@ const SearchResults = ({ query }) => {
           }}
         >
           <div
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
             style={{
               background: "#fff",
               padding: "20px",
