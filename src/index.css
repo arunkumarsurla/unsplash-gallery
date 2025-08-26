@@ -1,0 +1,139 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.header nav {
+  background-color: white;
+  border: 1px solid #767676;
+  height: 38px;
+  padding: 16px;
+  margin: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 20px;
+  justify-content: space-between;
+}
+
+.header nav h1 {
+  font-size: 32px;
+  color: black;
+}
+
+.header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  color: #767676;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+.header nav li:hover {
+  color: black;
+}
+
+.header nav small {
+  font-size: 20px;
+  color: grey;
+}
+
+.search-bar {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.search-bar .icon {
+  padding: 6px;
+  background-color: rgb(215, 208, 208);
+  border-radius: 4px;
+  width: 45px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.search-bar input {
+  height: 38px;
+  width: 30vw;
+  max-width: 100%;
+  font-size: 16px;
+  border: 2px solid #767676;
+  border-radius: 20px;
+  padding: 0 12px;
+}
+
+@media (max-width: 1200px) {
+  .header nav {
+    flex-direction: column;
+    height: auto;
+    padding: 12px;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .header nav h1 {
+    font-size: 26px;
+  }
+
+  .header nav ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .search-bar input {
+    width: 60vw;
+    max-width: 100%;
+    font-size: 16px;
+  }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.search-results {
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.search-results h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.gallery img {
+  height: 250px;
+  width: 350px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
